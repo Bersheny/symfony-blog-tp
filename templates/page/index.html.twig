@@ -3,16 +3,14 @@
 {% block title %}Page index{% endblock %}
 
 {% block body %}
-    <h1>Page index</h1>
+    <h1>Index des pages</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Text</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,11 +18,9 @@
             <tr>
                 <td>{{ page.id }}</td>
                 <td>{{ page.title }}</td>
-                <td>{{ page.image }}</td>
-                <td>{{ page.text }}</td>
                 <td>
-                    <a href="{{ path('app_page_show', {'id': page.id}) }}">show</a>
-                    <a href="{{ path('app_page_edit', {'id': page.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_page_show', {'id': page.id}) }}">Afficher</a>
+                    <a class="btn btn-success" href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_page_new') }}">Create new</a>
+    <a class="btn btn-warning" href="{{ path('app_page_new') }}">Nouvelle page</a>
 {% endblock %}
