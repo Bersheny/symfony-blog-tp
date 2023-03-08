@@ -21,6 +21,18 @@
         <source>Upcoming formations</source>
         <target>Formations à venir</target>
       </trans-unit>
+      <trans-unit id="N6vpEL6" resname="Suggest a formation">
+        <source>Suggest a formation</source>
+        <target>Proposer une formation</target>
+      </trans-unit>
+      <trans-unit id="Yx2g6Fh" resname="Give your opinion">
+        <source>Give your opinion</source>
+        <target>Donner votre avis</target>
+      </trans-unit>
+      <trans-unit id="Np40DHt" resname="Our center">
+        <source>Our center</source>
+        <target>Centre de formation</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
