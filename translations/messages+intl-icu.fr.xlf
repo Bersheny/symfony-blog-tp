@@ -9,6 +9,18 @@
         <source>Hello!</source>
         <target>Bonjour !</target>
       </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="YsVAIxB" resname="Our formations">
+        <source>Our formations</source>
+        <target>Nos formations</target>
+      </trans-unit>
+      <trans-unit id=".9NEkx0" resname="Upcoming formations">
+        <source>Upcoming formations</source>
+        <target>Formations à venir</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
