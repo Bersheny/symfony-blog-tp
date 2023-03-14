@@ -33,6 +33,30 @@
         <source>Our center</source>
         <target>Centre de formation</target>
       </trans-unit>
+      <trans-unit id="Fs2luqI" resname="Pages list">
+        <source>Pages list</source>
+        <target>Liste des pages</target>
+      </trans-unit>
+      <trans-unit id="QBJrDp0" resname="New page">
+        <source>New page</source>
+        <target>Nouvelle page</target>
+      </trans-unit>
+      <trans-unit id="SPDT05f" resname="Sign out">
+        <source>Sign out</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="XiuOllA" resname="Sign up">
+        <source>Sign up</source>
+        <target>S'inscrire</target>
+      </trans-unit>
+      <trans-unit id="v9QCsvb" resname="Sign in">
+        <source>Sign in</source>
+        <target>Se Connecter</target>
+      </trans-unit>
+      <trans-unit id="gh4k6A." resname="Created by the SIO team">
+        <source>Created by the SIO team</source>
+        <target>SIO</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -58,22 +58,30 @@
               Pages
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/page">Liste des pages</a></li>
-              <li><a class="dropdown-item" href="/page/new">Créer une page</a></li>
+              <li><a class="dropdown-item" href="/page">{{'Pages list'|trans}}</a></li>
+              <li><a class="dropdown-item" href="/page/new">{{'New page'|trans}}</a></li>
             </ul>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Catégories
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/page">Liste des catégories</a></li>
+                <li><a class="dropdown-item" href="/page/new">Nouvelle catégorie</a></li>
+              </ul>
             {% endif %}
           </li>
         </ul>
         <ul class="navbar-nav align-right mb-2 mb-lg-0">
           <li class="nav-item">
             {% if app.user %}
-            <a class="nav-link" aria-current="page" href="/logout">Sign out</a>
+            <a class="nav-link" aria-current="page" href="/logout">{{'Sign out'|trans}}</a>
             {% else %}
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/register">Sign up</a>
+            <a class="nav-link" aria-current="page" href="/register">{{'Sign up'|trans}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/login">Sign in</a>
+            <a class="nav-link" aria-current="page" href="/login">{{'Sign in'|trans}}</a>
           </li>
           {% endif %}
           </li>
@@ -86,7 +94,7 @@
       {% block body %}{% endblock %}
     </main>
     <footer class="pt-5 my-5 text-muted border-top">
-      Created by the SIO team &middot; &copy;
+      &copy; {{'Created by the SIO team'|trans}}
     </footer>
   </div>
 </body>
