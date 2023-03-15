@@ -69,6 +69,14 @@
         <source>New category</source>
         <target>Nouvelle catégorie</target>
       </trans-unit>
+      <trans-unit id="Vpskgqa" resname="Password:">
+        <source>Password:</source>
+        <target>Mot de passe:</target>
+      </trans-unit>
+      <trans-unit id="QoghNQ6" resname="login">
+        <source>login</source>
+        <target>Se connecter</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
