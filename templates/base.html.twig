@@ -71,7 +71,9 @@
           <li class="nav-item text-white">
             <a class="nav-link inactive text-white" aria-current="page" href="#">{{'Our center'|trans}}</a>
           </li>
+
           {% if is_granted('ROLE_ADMIN') %}
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -83,18 +85,9 @@
               <li><a class="dropdown-item" href="/page">{{'Pages list'|trans}}</a></li>
               <li><a class="dropdown-item" href="/page/new">{{'New page'|trans}}</a></li>
             </ul>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              {{'Categories'|trans}}
-            </a>
 
-            <!--Categories-->
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/category">{{'Categories list'|trans}}</a></li>
-              <li><a class="dropdown-item" href="/category/new">{{'New category'|trans}}</a></li>
-            </ul>
             {% endif %}
+
           </li>
         </ul>
 
@@ -107,7 +100,7 @@
             <a class="nav-link text-white btn btn-danger" aria-current="page" href="/logout">{{'Sign out'|trans}}</a>
             {% else %}
 
-          <!--Login-->
+            <!--Login-->
           <li class="nav-item text-white">
             <a class="nav-link text-white" aria-current="page" href="/login">{{'Sign in'|trans}}</a>
           </li>
