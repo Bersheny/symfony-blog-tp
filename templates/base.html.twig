@@ -77,17 +77,32 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
-              Pages
+              Formations
             </a>
 
             <!--Pages-->
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/page">{{'Pages list'|trans}}</a></li>
-              <li><a class="dropdown-item" href="/page/new">{{'New page'|trans}}</a></li>
+              <li><a class="dropdown-item" href="/formation">{{'Formations list'|trans}}</a></li>
+              <li><a class="dropdown-item" href="/formation/new">{{'New formation'|trans}}</a></li>
             </ul>
 
             {% endif %}
 
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Pages
+              </a>
+  
+              <!--Pages-->
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/page">{{'Pages list'|trans}}</a></li>
+                <li><a class="dropdown-item" href="/page/new">{{'New page'|trans}}</a></li>
+              </ul>
+
+            {% endif %}
           </li>
         </ul>
 
