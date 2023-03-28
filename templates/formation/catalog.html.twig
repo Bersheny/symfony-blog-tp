@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{'Formation'|trans}}{% endblock %}
+
+{% block body %}
+<h1>{{'Formation catalog'|trans}}</h1>
+
+{% set number = 0 %}
+<div class="accordion" id="accordionExample">
+    {% for formation in formations %}
+    {% set number =  number + 1 %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ number  }}" aria-expanded="true" aria-controls="collapse-{{ number }}">
+            {{ formation.name }}
+        </button>
+      </h2>
+      <div id="collapse-{{ number }}" class="accordion-collapse collapse {% if number < 2 %} show {% endif %}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            {{ formation.content }}
+            <br>
+            <br> <strong>Places :</strong> {{ formation.capacity }}
+            <br> <strong>Prix :</strong> {{ formation.price }} €
+            <br> <strong>Date de début :</strong> {{ formation.startDateTime ? formation.startDateTime|date('Y-m-d à H:i:s') : '' }}
+            <br> <strong>Date de fin :</strong> {{ formation.endDateTime ? formation.endDateTime|date('Y-m-d à H:i:s') : '' }}
+            
+        </div>
+      </div>
+      {% else %}
+    <tr>
+        <td colspan="10">no records found</td>
+    </tr>
+</div>
+    {% endfor %}
+  </div>
+
+{#
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Capacity</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>StartDateTime</th>
+            <th>EndDateTime</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formation in formations %}
+        <tr>
+            <td>{{ formation.name }}</td>
+            <td>{{ formation.content }}</td>
+            <td>{{ formation.capacity }}</td>
+            <td>{{ formation.price }}</td>
+            <td>{{ formation.description }}</td>
+            <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
+            <td>{{ formation.endDateTime ? formation.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="10">no records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+#}
+{% endblock %}

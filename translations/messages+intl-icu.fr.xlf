@@ -77,6 +77,18 @@
         <source>login</source>
         <target>Se connecter</target>
       </trans-unit>
+      <trans-unit id="OHfRSIm" resname="Catalog">
+        <source>Catalog</source>
+        <target>Catalogue</target>
+      </trans-unit>
+      <trans-unit id="rbzzT7V" resname="Formations list">
+        <source>Formations list</source>
+        <target>Liste des formations</target>
+      </trans-unit>
+      <trans-unit id="p6S9IvC" resname="New formation">
+        <source>New formation</source>
+        <target>Nouvelle formation</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
