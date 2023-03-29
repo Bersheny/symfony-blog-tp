@@ -20,15 +20,15 @@
             {{ formation.content }}
             <br>
             <br> <strong>Places :</strong> {{ formation.capacity }}
-            <br> <strong>Prix :</strong> {{ formation.price }} €
-            <br> <strong>Date de début :</strong> {{ formation.startDateTime ? formation.startDateTime|date('Y-m-d à H:i:s') : '' }}
-            <br> <strong>Date de fin :</strong> {{ formation.endDateTime ? formation.endDateTime|date('Y-m-d à H:i:s') : '' }}
+            <br> <strong>Tarif :</strong> {{ formation.price }} €
+            <br> <strong>Débute le : </strong> {{ formation.startDateTime ? formation.startDateTime|date('d/m/Y à H') : '' }}H{{ formation.endDateTime ? formation.endDateTime|date('i') : '' }}
+            <br> <strong>Termine le : </strong> {{ formation.endDateTime ? formation.endDateTime|date('d/m/Y à H') : '' }}H{{ formation.endDateTime ? formation.endDateTime|date('i') : '' }}
             
         </div>
       </div>
       {% else %}
     <tr>
-        <td colspan="10">no records found</td>
+        <td colspan="10">Aucune formation</td>
     </tr>
 </div>
     {% endfor %}
