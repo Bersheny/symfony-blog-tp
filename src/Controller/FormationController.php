@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use TCPDF;
 use DateTimeImmutable;
 use App\Entity\Formation;
 use App\Form\Formation1Type;
@@ -14,6 +15,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/formation')]
 class FormationController extends AbstractController
 {
+    #[Route('/pdf/{id}', name: 'app_formation_pdf', methods: ['GET'])]
+    public function pdf(Formation $formation): Response
+    {
+        $pdf = new TCPDF();
+
+        $pdf->SetAuthor('SIO1-Team');
+        $pdf->SetTitle($formation->getName());
+        $pdf->setCellPaddings(1, 1, 1, 1);
+        $pdf->setCellMargins(1, 1, 1, 1);
+
+        $pdf->AddPage();
+
+        $pdf->setXY(10, 10);
+        $pdf->Image('images/fcpro.jpg');
+
+        $pdf->SetFont('helvetica', '', 18);
+        $pdf->SetTextColor(0, 0, 255);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->MultiCell(185, 10, $formation->getName(), 0, 'P', 1, 0, '', '', true);
+
+        $pdf->setXY(10, 30);
+        $pdf->SetFont('times', '', 12);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->writeHTML($formation->getContent());
+        $pdf->WriteHTML('Tarif : ' . $formation->getPrice() . ' €');
+        $pdf->WriteHTML('Places : ' . $formation->getCapacity());
+
+        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I');
+    }
+
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]
     public function catalog(FormationRepository $formationRepository): Response
     {
