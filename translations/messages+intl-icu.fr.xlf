@@ -89,6 +89,26 @@
         <source>New formation</source>
         <target>Nouvelle formation</target>
       </trans-unit>
+      <trans-unit id="hCrEGET" resname="Formation catalog">
+        <source>Formation catalog</source>
+        <target>Catalogue</target>
+      </trans-unit>
+      <trans-unit id="YYO_CIP" resname="Download PDF">
+        <source>Download PDF</source>
+        <target>Télécharger le PDF</target>
+      </trans-unit>
+      <trans-unit id="HGMzUJ3" resname="show">
+        <source>show</source>
+        <target>Afficher</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="nz33U6Q" resname="Create new">
+        <source>Create new</source>
+        <target>Créer</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
