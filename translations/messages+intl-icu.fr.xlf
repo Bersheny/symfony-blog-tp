@@ -109,6 +109,18 @@
         <source>Create new</source>
         <target>Créer</target>
       </trans-unit>
+      <trans-unit id="1jvfDvj" resname="An error has occured: ">
+        <source>An error has occured: </source>
+        <target>Une erreur est survenue : </target>
+      </trans-unit>
+      <trans-unit id="xlmg0O3" resname="Illustration">
+        <source>Illustration</source>
+        <target>Illustration</target>
+      </trans-unit>
+      <trans-unit id="az2SQK9" resname="Please upload a valid image file">
+        <source>Please upload a valid image file</source>
+        <target>Choisissez une image valide</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

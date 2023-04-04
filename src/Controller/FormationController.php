@@ -10,6 +10,8 @@ use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/formation')]
@@ -65,7 +67,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_formation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FormationRepository $formationRepository): Response
+    public function new(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
@@ -77,6 +79,8 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageUploaderHelper->uploadImage($form, $formation);
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
@@ -97,7 +101,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_formation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Formation $formation, FormationRepository $formationRepository): Response
+    public function edit(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
@@ -105,6 +109,8 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageUploaderHelper->uploadImage($form, $formation);
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
