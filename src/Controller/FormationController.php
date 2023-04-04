@@ -6,6 +6,7 @@ use TCPDF;
 use DateTimeImmutable;
 use App\Entity\Formation;
 use App\Form\Formation1Type;
+use App\Services\ImageUploaderHelper;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
