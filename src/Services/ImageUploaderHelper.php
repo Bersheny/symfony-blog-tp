@@ -11,7 +11,7 @@ class ImageUploaderHelper {
     private $slugger;
     private $translator;
 
-    public function __construct(SluggerInterface $sluggeer, TranslatorInterface $translator) {
+    public function __construct(SluggerInterface $slugger, TranslatorInterface $translator) {
         $this->slugger = $slugger;
         $this->translator = $translator;
         }
