@@ -49,6 +49,14 @@ class FormationController extends AbstractController
         return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I');
     }
 
+    #[Route('/futur', name: 'app_formation_futur', methods: ['GET'])]
+    public function futur(FormationRepository $formationRepository): Response
+    {
+        return $this->render('formation/futur.html.twig', [
+            'formations' => $formationRepository->findAllInTheFuture(),
+        ]);
+    }
+
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]
     public function catalog(FormationRepository $formationRepository): Response
     {
@@ -68,7 +76,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_formation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository): Response
+    public function new(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
@@ -81,7 +89,10 @@ class FormationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageUploaderHelper->uploadImage($form, $formation);
+            $errorMessage = $imageUploaderHelper->uploadImage($form, $formation);
+            if (!empty($errorMessage)) {
+                $this->addFlash ('danger', $translator->trans('An error has occured: ') . $errorMessage);
+            }
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
@@ -102,7 +113,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_formation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository): Response
+    public function edit(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository, Formation $formation, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
@@ -111,7 +122,10 @@ class FormationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageUploaderHelper->uploadImage($form, $formation);
+            $errorMessage = $imageUploaderHelper->uploadImage($form, $formation);
+            if (!empty($errorMessage)) {
+                $this->addFlash ('danger', $translator->trans('An error has occured: ') . $errorMessage);
+            }
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
@@ -128,7 +142,8 @@ class FormationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        if ($this->isCsrfTokenValid('delete'.$formation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$formation->getId(), $request->request->get('_token'))) 
+        {
             $formationRepository->remove($formation, true);
         }
 
