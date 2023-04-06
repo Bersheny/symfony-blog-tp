@@ -23,28 +23,37 @@ class FormationController extends AbstractController
     {
         $pdf = new TCPDF();
 
+        $left_column = '<img src="images/fcpro.jpg">' . 'Tarif : ' . $formation->getPrice() . ' €' . '<br><br>' . 'Places : ' . $formation->getCapacity();
+        $right_column = '<b><u>Description de la formation : </u></b><br><br>' . $formation->getDescription() . '<br><br><br>' . '<b><u>Contenu de la formation : </u></b>' . $formation->getContent();
+        $y = $pdf->getY();
+        $middle = $pdf->getPageWidth() / 2;
+        $name = '<b><i>' . $formation->getName() . '</i></b>';
+
         $pdf->SetAuthor('SIO1-Team');
+
         $pdf->SetTitle($formation->getName());
         $pdf->setCellPaddings(1, 1, 1, 1);
         $pdf->setCellMargins(1, 1, 1, 1);
 
         $pdf->AddPage();
 
-        $pdf->setXY(10, 10);
-        $pdf->Image('images/fcpro.jpg');
-
+        $pdf->setXY($middle-30, 15);
         $pdf->SetFont('helvetica', '', 18);
-        $pdf->SetTextColor(0, 0, 255);
-        $pdf->SetFillColor(255, 255, 255);
-        $pdf->MultiCell(185, 10, $formation->getName(), 0, 'P', 1, 0, '', '', true);
+        $pdf->SetTextColor(1, 14, 51);
+        $pdf->SetFillColor(212, 225, 237);
+        $pdf->writeHTMLCell(125, '', '', $y, $name, 0, 0, 1, true, 'J', true);
 
-        $pdf->setXY(10, 30);
-        $pdf->SetFont('times', '', 12);
+        $pdf->SetFillColor(234, 232, 232);
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->setXY(10, 15);
+        $pdf->writeHTMLCell(60, '', '', $y, $left_column, 0, 0, 1, true, 'J', true);
+
+        $pdf->SetFont('helvetica', '', 9);
+        $pdf->setXY($middle-30, 30);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFillColor(255, 255, 255);
-        $pdf->writeHTML($formation->getContent());
-        $pdf->WriteHTML('Tarif : ' . $formation->getPrice() . ' €');
-        $pdf->WriteHTML('Places : ' . $formation->getCapacity());
+        $pdf->writeHTMLCell(125, '', '', $y, $right_column, 0, 0, 1, true, 'J', true);
+
 
         return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I');
     }
