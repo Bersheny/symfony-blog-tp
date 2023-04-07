@@ -37,6 +37,16 @@ class FormationController extends AbstractController
 
         $pdf->AddPage();
 
+        $pdf->setXY(10, 1);
+        $pdf->SetFont('helvetica', '', 9);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->writeHTMLCell(125, '', '', $y, 'Date de création : 01/01/2023', 0, 0, 1, true, 'J', true);
+
+        $pdf->setXY($middle, 1);
+        $pdf->SetFont('helvetica', '', 9);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->writeHTMLCell(125, '', '', $y, 'Date de mise à jour : 01/01/2023', 0, 0, 1, true, 'J', true);
+
         $pdf->setXY($middle-30, 15);
         $pdf->SetFont('helvetica', '', 18);
         $pdf->SetTextColor(1, 14, 51);
@@ -58,12 +68,57 @@ class FormationController extends AbstractController
         return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I');
     }
 
-    #[Route('/futur', name: 'app_formation_futur', methods: ['GET'])]
+    #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]
+    public function duplicate(Request $request, FormationRepository $formationRepository, TranslatorInterface $translator, Formation $formation): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
+        $formation2 = new Formation();
+        $formation2->setCreatedAt($formation->getCreatedAt());
+        $formation2->setCreatedBy($formation->getCreatedBy());
+        $formation2->setContent($formation->getContent());
+        $formation2->setDescription($formation->getDescription());
+
+        $formation2->setCapacity($formation->getCapacity());
+        $formation2->setStartDateTime($formation->getStartDateTime());
+        $formation2->setEndDateTime($formation->getEndDateTime());
+        $formation2->setImageFileName($formation->getImageFileName());
+        $formation2->setName($formation->getName());
+        $formation2->setPrice($formation->getPrice());
+
+        $formationRepository->save($formation2, true);
+        $this->addFlash('success', $translator->trans('The formation is copied'));
+
+        return $this->redirectToRoute('app_formation_index');
+    }
+
+    /* #[Route('/futur', name: 'app_formation_futur', methods: ['GET'])]
     public function futur(FormationRepository $formationRepository): Response
     {
         return $this->render('formation/futur.html.twig', [
             'formations' => $formationRepository->findAllInTheFuture(),
         ]);
+    }
+    */
+
+    #[Route('/futur', name: 'app_formation_futur', methods: ['GET'])]
+    public function futur(FormationRepository $formationRepository): Response
+    {
+        $formationsPerThree = array();
+
+        $formations = $formationRepository->findAllInTheFuture();
+
+        $i=1; $j=0;
+        foreach ($formations as $formation) {
+            $i++;
+            if ($i>3) {
+                $j++; $i=1;
+            }
+            $formationsPerThree[$j][$i] = $formation;
+        }
+        dump($formationsPerThree);
+        
+        return $this->render('formation/futur.html.twig', ['formations' => $formationsPerThree,]);
     }
 
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]
