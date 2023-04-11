@@ -116,9 +116,10 @@ class FormationController extends AbstractController
             }
             $formationsPerThree[$j][$i] = $formation;
         }
+        dump($formations);
         dump($formationsPerThree);
         
-        return $this->render('formation/futur.html.twig', ['formations' => $formationsPerThree,]);
+        return $this->render('formation/futur.html.twig', ['formationsPerThree' => $formationsPerThree,]);
     }
 
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]
