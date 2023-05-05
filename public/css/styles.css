@@ -114,3 +114,9 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
  }
+ .ch-max-25 {
+  display:inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 25ch;
+}
