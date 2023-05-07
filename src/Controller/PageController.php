@@ -48,8 +48,6 @@ class PageController extends AbstractController
     #[Route('/{id}', name: 'app_page_show', methods: ['GET'])]
     public function show(Page $page): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
-
         return $this->render('page/show.html.twig', [
             'page' => $page,
         ]);
