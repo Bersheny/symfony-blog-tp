@@ -106,7 +106,7 @@ class FormationController extends AbstractController
     {
         $formationsPerThree = array();
 
-        $formations = $formationRepository->findAllInTheFuture();
+        $formations = $formationRepository->findThreeInTheFuture();
 
         $i=1; $j=0;
         foreach ($formations as $formation) {
