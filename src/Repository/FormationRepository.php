@@ -56,6 +56,18 @@ class FormationRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findThreeInTheFuture(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.startDateTime > :val')
+            ->setParameter('val', new DateTime())
+            ->orderBy('f.startDateTime', 'ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Formation[] Returns an array of Formation objects
 //     */
